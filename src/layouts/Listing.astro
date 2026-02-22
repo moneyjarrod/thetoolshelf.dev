@@ -100,6 +100,17 @@ const seoDesc = `Honest review of ${data.name}. Setup guide, client compatibilit
       </p>
     </div>
 
+    {data.affiliate_links && data.affiliate_links.length > 0 && (
+      <div style="margin-top: 2rem; padding: 1rem 1.25rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-elevated, #fafafa);">
+        <p style="font-size: 0.95rem; margin: 0;">
+          {data.affiliate_links.map((link, i) => (
+            <>{i > 0 && ' · '}<a href={link.url} target="_blank" rel="noopener sponsored">{link.label} →</a></>
+          ))}
+        </p>
+        <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0.35rem 0 0 0;">Affiliate link — we may earn a commission at no cost to you.</p>
+      </div>
+    )}
+
     {data.related_slugs && data.related_slugs.length > 0 && (
       <div style="margin-top: 2rem;">
         <h3>Related Servers</h3>
