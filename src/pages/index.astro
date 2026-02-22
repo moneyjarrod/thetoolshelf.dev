@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import ListingCard from '../components/ListingCard.astro';
+
+const servers = await getCollection('servers');
+const featured = servers
+  .filter(s => s.data.verdict === 'recommended')
+  .slice(0, 6);
+---
+
+<Base
+  title="ToolShelf — AI Tools That Actually Work"
+  description="Hand-curated directory of AI integration tools. Honest reviews, compatibility testing, and setup guides. Starting with MCP servers."
+>
+  <div class="container" style="padding-top: 3rem; padding-bottom: 3rem;">
+    <div style="margin-bottom: 3rem;">
+      <h1 style="font-size: 2rem;">AI tools that actually work.</h1>
+      <p style="font-size: 1.15rem; color: var(--text-secondary); max-width: 560px;">
+        Hand-curated directory of AI integration tools — starting with MCP servers.
+        Every tool installed, tested, and honestly reviewed.
+      </p>
+    </div>
+
+    <h2><a href="/mcp/">MCP Servers</a></h2>
+    <p style="color: var(--text-secondary); margin-bottom: 1.25rem;">
+      {servers.length} servers reviewed with honest pros, cons, client compatibility, and paste-ready configs.
+    </p>
+
+    {featured.length > 0 && (
+      <div class="listing-grid" style="margin-bottom: 2rem;">
+        {featured.map(server => (
+          <ListingCard
+            slug={server.id}
+            name={server.data.name}
+            description={server.data.description}
+            verdict={server.data.verdict}
+            language={server.data.language}
+            setup_difficulty={server.data.setup_difficulty}
+            category={server.data.category}
+          />
+        ))}
+      </div>
+    )}
+
+    <p><a href="/mcp/servers/">View all MCP server reviews →</a></p>
+  </div>
+</Base>

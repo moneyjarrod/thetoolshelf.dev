@@ -1,0 +1,114 @@
+---
+import { render } from 'astro:content';
+import Base from './Base.astro';
+import VerdictBadge from '../components/VerdictBadge.astro';
+import CompatMatrix from '../components/CompatMatrix.astro';
+import ConfigBlock from '../components/ConfigBlock.astro';
+
+const { entry } = Astro.props;
+const { data, id } = entry;
+const { Content } = await render(entry);
+
+const difficultyLabels = ['', 'Easy', 'Moderate', 'Advanced'];
+const difficultyDots = data.setup_difficulty;
+
+// Schema.org structured data
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: data.name,
+  description: data.description,
+  applicationCategory: 'DeveloperApplication',
+  operatingSystem: 'Cross-platform',
+  url: data.github_url,
+  review: {
+    '@type': 'Review',
+    author: { '@type': 'Person', name: data.metadata.reviewer },
+    datePublished: data.metadata.date_reviewed.toISOString().split('T')[0],
+    reviewBody: data.verdict_note,
+  },
+};
+
+const seoTitle = `${data.name} — Setup, Review & Compatibility`;
+const seoDesc = `Honest review of ${data.name}. Setup guide, client compatibility (Claude Desktop, Cursor, Claude Code), pros, cons, and paste-ready config.`;
+---
+
+<Base title={seoTitle} description={seoDesc} schema={schema}>
+  <article class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
+    <h1>{data.name}</h1>
+    <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+      {data.description}
+    </p>
+
+    <VerdictBadge verdict={data.verdict} note={data.verdict_note} />
+
+    <div class="quick-stats">
+      <span><strong>Language:</strong> {data.language}</span>
+      <span><strong>Transport:</strong> {data.transport.join(', ')}</span>
+      <span><strong>License:</strong> {data.license}</span>
+      <span><strong>Stars:</strong> {data.stars.toLocaleString()}</span>
+      <span><strong>Updated:</strong> {data.last_updated.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</span>
+      <span>
+        <strong>Setup:</strong>
+        <span class="difficulty">
+          {[1, 2, 3].map(i => (
+            <span class={`difficulty-dot ${i <= difficultyDots ? 'active' : ''}`} />
+          ))}
+        </span>
+        {difficultyLabels[difficultyDots]}
+      </span>
+    </div>
+
+    <CompatMatrix compatibility={data.compatibility} />
+
+    <div class="review-prose">
+      <Content />
+    </div>
+
+    <ConfigBlock
+      config={data.install.config_json}
+      serverName={id.replace('.md', '').replace(/\//g, '-')}
+    />
+
+    {data.install.env_vars && data.install.env_vars.length > 0 && (
+      <div style="margin: 1.5rem 0;">
+        <h3>Environment Variables</h3>
+        <ul>
+          {data.install.env_vars.map(v => (
+            <li><code>{v.name}</code>{v.required ? ' (required)' : ''} — {v.description}</li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    {data.install.prerequisites && data.install.prerequisites.length > 0 && (
+      <div style="margin: 1.5rem 0;">
+        <h3>Prerequisites</h3>
+        <ul>
+          {data.install.prerequisites.map(p => <li>{p}</li>)}
+        </ul>
+      </div>
+    )}
+
+    <div style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--text-muted);">
+      <p>
+        <a href={data.github_url} target="_blank" rel="noopener">View on GitHub</a>
+        {data.npm_package && <> · <code>{data.install.command}</code></>}
+      </p>
+      <p>
+        Reviewed by {data.metadata.reviewer} · {data.metadata.date_reviewed.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+      </p>
+    </div>
+
+    {data.related_slugs && data.related_slugs.length > 0 && (
+      <div style="margin-top: 2rem;">
+        <h3>Related Servers</h3>
+        <ul>
+          {data.related_slugs.map(slug => (
+            <li><a href={`/mcp/servers/${slug}/`}>{slug}</a></li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </article>
+</Base>

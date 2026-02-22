@@ -1,0 +1,79 @@
+---
+interface Props {
+  config: Record<string, any>;
+  serverName: string;
+}
+
+const { config, serverName } = Astro.props;
+
+const configWrapper = {
+  mcpServers: {
+    [serverName]: config,
+  },
+};
+
+const jsonString = JSON.stringify(configWrapper, null, 2);
+---
+
+<div class="config-block">
+  <div class="config-header">
+    <span class="config-title">Config — paste into your client</span>
+    <button class="copy-btn" data-config={jsonString}>Copy</button>
+  </div>
+  <pre><code>{jsonString}</code></pre>
+</div>
+
+<script>
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const config = btn.getAttribute('data-config') || '';
+      await navigator.clipboard.writeText(config);
+      const original = btn.textContent;
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = original, 2000);
+    });
+  });
+</script>
+
+<style>
+  .config-block {
+    background: #1e1e2e;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 1.5rem 0;
+  }
+  .config-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background: #2a2a3e;
+  }
+  .config-title {
+    font-size: 0.8rem;
+    color: #a0a0b8;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .copy-btn {
+    background: none;
+    border: 1px solid #444;
+    color: #ccc;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+  }
+  .copy-btn:hover { background: #333; }
+  pre {
+    margin: 0;
+    padding: 1rem;
+    overflow-x: auto;
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  code {
+    color: #cdd6f4;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+  }
+</style>

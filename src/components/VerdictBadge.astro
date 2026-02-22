@@ -1,0 +1,41 @@
+---
+interface Props {
+  verdict: 'recommended' | 'conditional' | 'skip';
+  note: string;
+}
+
+const { verdict, note } = Astro.props;
+
+const config = {
+  recommended: { emoji: '✅', label: 'Recommended', className: 'verdict-recommended' },
+  conditional: { emoji: '⚠️', label: 'Conditional', className: 'verdict-conditional' },
+  skip: { emoji: '❌', label: 'Skip', className: 'verdict-skip' },
+};
+
+const { emoji, label, className } = config[verdict];
+---
+
+<div class={`verdict-badge ${className}`}>
+  <span class="verdict-emoji">{emoji}</span>
+  <span class="verdict-label">{label}</span>
+  <span class="verdict-note">{note}</span>
+</div>
+
+<style>
+  .verdict-badge {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+  }
+  .verdict-emoji { font-size: 1.1rem; }
+  .verdict-label { font-weight: 700; }
+  .verdict-note { color: var(--text-muted); }
+  .verdict-recommended { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .verdict-conditional { background: #fefce8; border: 1px solid #fef08a; }
+  .verdict-skip { background: #fef2f2; border: 1px solid #fecaca; }
+</style>

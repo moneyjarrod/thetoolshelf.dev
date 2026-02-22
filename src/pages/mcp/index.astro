@@ -1,0 +1,54 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import ListingCard from '../../components/ListingCard.astro';
+
+const servers = await getCollection('servers');
+
+// Group by first category
+const categories = new Map<string, typeof servers>();
+for (const server of servers) {
+  const cat = server.data.category[0] || 'other';
+  if (!categories.has(cat)) categories.set(cat, []);
+  categories.get(cat)!.push(server);
+}
+
+const recommended = servers.filter(s => s.data.verdict === 'recommended');
+---
+
+<Base
+  title="MCP Servers — Hand-Curated Directory"
+  description="Find the best MCP servers for Claude Desktop, Cursor, Claude Code, and more. Honest reviews, compatibility testing, and paste-ready configs."
+>
+  <div class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
+    <h1>MCP Servers</h1>
+    <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 0.5rem;">
+      Hand-curated directory of MCP servers that actually work.
+    </p>
+    <p style="color: var(--text-muted); margin-bottom: 2rem;">
+      Every server installed, tested in real clients, reviewed with honest pros and cons.
+      {servers.length} servers reviewed. {recommended.length} recommended.
+    </p>
+
+    <h2><a href="/mcp/servers/">All Servers ({servers.length})</a></h2>
+
+    {[...categories.entries()].map(([cat, catServers]) => (
+      <div style="margin-top: 2rem;">
+        <h3 style="text-transform: capitalize;">{cat.replace(/-/g, ' ')} ({catServers.length})</h3>
+        <div class="listing-grid" style="margin-top: 0.75rem;">
+          {catServers.map(server => (
+            <ListingCard
+              slug={server.id}
+              name={server.data.name}
+              description={server.data.description}
+              verdict={server.data.verdict}
+              language={server.data.language}
+              setup_difficulty={server.data.setup_difficulty}
+              category={server.data.category}
+            />
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</Base>

@@ -1,0 +1,16 @@
+---
+import { getCollection } from 'astro:content';
+import Listing from '../../../layouts/Listing.astro';
+
+export async function getStaticPaths() {
+  const servers = await getCollection('servers');
+  return servers.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+---
+
+<Listing entry={entry} />

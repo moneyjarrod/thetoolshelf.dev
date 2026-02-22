@@ -1,0 +1,44 @@
+---
+import SEO from '../components/SEO.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  schema?: Record<string, any>;
+}
+
+const { title, description, schema } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <SEO title={title} description={description} schema={schema} />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container-wide header-inner">
+      <a href="/" class="site-logo">ToolShelf</a>
+      <nav class="site-nav">
+        <a href="/mcp/">MCP Servers</a>
+        <a href="/about/">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>ToolShelf — AI tools that actually work.</p>
+      <p>Hand-curated by developers. Not scraped. Not generated.</p>
+    </div>
+  </footer>
+</body>
+</html>

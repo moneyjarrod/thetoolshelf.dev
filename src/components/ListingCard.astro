@@ -1,0 +1,79 @@
+---
+interface Props {
+  slug: string;
+  name: string;
+  description: string;
+  verdict: 'recommended' | 'conditional' | 'skip';
+  language: string;
+  setup_difficulty: number;
+  category: string[];
+}
+
+const { slug, name, description, verdict, language, setup_difficulty, category } = Astro.props;
+
+const verdictConfig = {
+  recommended: { emoji: '✅', label: 'Recommended' },
+  conditional: { emoji: '⚠️', label: 'Conditional' },
+  skip: { emoji: '❌', label: 'Skip' },
+};
+
+const difficultyLabels = ['', 'Easy', 'Moderate', 'Advanced'];
+const { emoji, label } = verdictConfig[verdict];
+---
+
+<a href={`/mcp/servers/${slug}/`} class="listing-card">
+  <div class="card-top">
+    <h3 class="card-name">{name}</h3>
+    <span class={`card-verdict card-verdict-${verdict}`}>{emoji} {label}</span>
+  </div>
+  <p class="card-desc">{description}</p>
+  <div class="card-meta">
+    <span>{language}</span>
+    <span>Setup: {difficultyLabels[setup_difficulty]}</span>
+    <span>{category[0]}</span>
+  </div>
+</a>
+
+<style>
+  .listing-card {
+    display: block;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .listing-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 0.35rem;
+  }
+  .card-name {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin: 0;
+  }
+  .card-verdict {
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+  .card-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0 0 0.75rem 0;
+    line-height: 1.4;
+  }
+  .card-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+</style>

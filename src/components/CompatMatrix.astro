@@ -1,0 +1,65 @@
+---
+interface Props {
+  compatibility: {
+    claude_desktop: string;
+    cursor: string;
+    vscode: string;
+    claude_code: string;
+    windsurf: string;
+    cline: string;
+  };
+}
+
+const { compatibility } = Astro.props;
+
+const clients = [
+  { key: 'claude_desktop', label: 'Claude Desktop' },
+  { key: 'cursor', label: 'Cursor' },
+  { key: 'claude_code', label: 'Claude Code' },
+  { key: 'vscode', label: 'VS Code' },
+  { key: 'windsurf', label: 'Windsurf' },
+  { key: 'cline', label: 'Cline' },
+] as const;
+
+const icons: Record<string, string> = {
+  full: '✅',
+  partial: '⚠️',
+  none: '❌',
+  untested: '—',
+};
+---
+
+<div class="compat-matrix">
+  <h3>Client Compatibility</h3>
+  <div class="compat-grid">
+    {clients.map(({ key, label }) => (
+      <div class="compat-item">
+        <span class="compat-icon">{icons[compatibility[key]] || '—'}</span>
+        <span class="compat-label">{label}</span>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .compat-matrix h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin: 0 0 0.5rem 0;
+  }
+  .compat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.35rem 1rem;
+  }
+  .compat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+  }
+  .compat-icon { font-size: 0.85rem; }
+  .compat-label { color: var(--text-secondary); }
+</style>
