@@ -1,0 +1,90 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base
+  title="Brave Search vs Tavily MCP — Which Search Server? (2026)"
+  description="Side-by-side comparison of Brave Search and Tavily MCP servers. Six specialized tools vs AI-optimized results, free tiers, and which search server fits your workflow."
+>
+  <div class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
+    <nav style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+      <a href="/">Home</a> → <a href="/mcp/">MCP Servers</a> → <a href="/mcp/best-for-search/">Search</a> → Brave Search vs Tavily
+    </nav>
+
+    <h1>Brave Search vs Tavily MCP</h1>
+    <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem;">
+      Both recommended. Different strengths — one has breadth, the other has depth.
+    </p>
+
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 2rem;">
+      <thead>
+        <tr style="border-bottom: 2px solid var(--border);">
+          <th style="text-align: left; padding: 0.75rem 0.5rem;"></th>
+          <th style="text-align: left; padding: 0.75rem 0.5rem;"><a href="/mcp/servers/brave-search-mcp/">Brave Search</a></th>
+          <th style="text-align: left; padding: 0.75rem 0.5rem;"><a href="/mcp/servers/tavily-mcp/">Tavily</a></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Verdict</td>
+          <td style="padding: 0.5rem;">✅ Recommended</td>
+          <td style="padding: 0.5rem;">✅ Recommended</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Tools</td>
+          <td style="padding: 0.5rem;">6 (web, local, image, video, news, summarizer)</td>
+          <td style="padding: 0.5rem;">4 (search, extract, map, crawl)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Free Tier</td>
+          <td style="padding: 0.5rem;">2,000 queries/month</td>
+          <td style="padding: 0.5rem;">1,000 credits/month (no credit card)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Install</td>
+          <td style="padding: 0.5rem;">npx (official npm package)</td>
+          <td style="padding: 0.5rem;">npx via mcp-remote (hosted server)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Search Type</td>
+          <td style="padding: 0.5rem;">Traditional web index (Brave's own)</td>
+          <td style="padding: 0.5rem;">AI-optimized (pre-processed for LLMs)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Local Business Search</td>
+          <td style="padding: 0.5rem;">Yes (Pro plan)</td>
+          <td style="padding: 0.5rem;">No</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Site Crawling</td>
+          <td style="padding: 0.5rem;">No</td>
+          <td style="padding: 0.5rem;">Yes (crawl + map tools)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Result Caching</td>
+          <td style="padding: 0.5rem;">No</td>
+          <td style="padding: 0.5rem;">No</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>When to Use Brave Search</h2>
+    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
+      Use Brave Search when you need broad search capabilities across multiple content types. Six specialized tools mean Claude picks the right search method automatically — web for general queries, news for current events, image and video for media, local for businesses. The 2,000 free queries per month is the most generous free tier in the search MCP category. Best for general-purpose search where variety of results matters more than LLM optimization.
+    </p>
+
+    <h2>When to Use Tavily</h2>
+    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
+      Use Tavily when Claude needs search results it can reason about immediately. Results come pre-processed — ads stripped, navigation removed, content extracted — so Claude spends tokens on analysis, not parsing. The extract, map, and crawl tools go beyond simple search into site analysis territory. Best for AI agent workflows, research tasks, and situations where result quality matters more than result variety.
+    </p>
+
+    <h2>The Bottom Line</h2>
+    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
+      Brave Search gives Claude more ways to search. Tavily gives Claude better results to work with. For casual "look this up" queries, Brave's larger free tier and six tool types make it the easier default. For AI agent pipelines and deep research, Tavily's LLM-optimized output produces better downstream results. Many developers run both — they serve different search needs and don't conflict.
+    </p>
+
+    <p style="margin-top: 2rem;">
+      <a href="/mcp/best-for-search/">← Back to search MCP servers</a>
+    </p>
+  </div>
+</Base>

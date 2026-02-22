@@ -1,0 +1,100 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base
+  title="Notion vs Obsidian MCP — Cloud vs Local Knowledge Management (2026)"
+  description="Side-by-side comparison of Notion and Obsidian MCP servers. Official cloud server vs community local vault access, setup complexity, and which fits your workflow."
+>
+  <div class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
+    <nav style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+      <a href="/">Home</a> → <a href="/mcp/">MCP Servers</a> → <a href="/mcp/best-for-productivity/">Productivity</a> → Notion vs Obsidian
+    </nav>
+
+    <h1>Notion MCP vs Obsidian MCP</h1>
+    <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem;">
+      Cloud workspace vs local vault. Official server vs community build. Different philosophies, different tradeoffs.
+    </p>
+
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 2rem;">
+      <thead>
+        <tr style="border-bottom: 2px solid var(--border);">
+          <th style="text-align: left; padding: 0.75rem 0.5rem;"></th>
+          <th style="text-align: left; padding: 0.75rem 0.5rem;"><a href="/mcp/servers/notion-mcp/">Notion MCP</a></th>
+          <th style="text-align: left; padding: 0.75rem 0.5rem;"><a href="/mcp/servers/obsidian-mcp/">Obsidian MCP</a></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Verdict</td>
+          <td style="padding: 0.5rem;">✅ Recommended</td>
+          <td style="padding: 0.5rem;">⚠️ Conditional</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Maintainer</td>
+          <td style="padding: 0.5rem;">Notion (official)</td>
+          <td style="padding: 0.5rem;">Community (MarkusPfundstein)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Data Location</td>
+          <td style="padding: 0.5rem;">Notion's cloud</td>
+          <td style="padding: 0.5rem;">Local filesystem</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Setup</td>
+          <td style="padding: 0.5rem;">Moderate (OAuth or token + page connections)</td>
+          <td style="padding: 0.5rem;">Advanced (Obsidian plugin + Python server)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Auth</td>
+          <td style="padding: 0.5rem;">OAuth (remote) or integration token (local)</td>
+          <td style="padding: 0.5rem;">REST API plugin key</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Search</td>
+          <td style="padding: 0.5rem;">Full workspace search</td>
+          <td style="padding: 0.5rem;">Full-text + filename search</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Write Support</td>
+          <td style="padding: 0.5rem;">Pages, databases, comments</td>
+          <td style="padding: 0.5rem;">Heading-relative patching, append, delete</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Requires App Running</td>
+          <td style="padding: 0.5rem;">No (cloud API)</td>
+          <td style="padding: 0.5rem;">Yes (Obsidian must be open)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Client Support</td>
+          <td style="padding: 0.5rem;">All 6 tested clients</td>
+          <td style="padding: 0.5rem;">Claude Desktop only tested</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>When to Use Notion MCP</h2>
+    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
+      Use Notion MCP if your knowledge base lives in Notion. The official server is token-optimized, supports the full Notion API surface (pages, databases, comments, search), and the OAuth remote version makes setup nearly frictionless. Works across all major MCP clients. Best for teams already invested in Notion's ecosystem who want Claude to read and write to their workspace.
+    </p>
+
+    <h2>When to Use Obsidian MCP</h2>
+    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
+      Use Obsidian MCP if your notes live in local markdown files and you specifically want the Obsidian REST API's features like heading-relative patching. The fully local architecture means zero data leaves your machine — important for users who chose Obsidian specifically for privacy. Accept the tradeoff: Obsidian must be running, setup involves two dependencies, and the ecosystem is fragmented across multiple community servers.
+    </p>
+
+    <h2>Alternative: Filesystem MCP for Obsidian Vaults</h2>
+    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
+      Since Obsidian vaults are just folders of markdown files, <a href="/mcp/servers/filesystem-mcp/">Filesystem MCP</a> can read and write your vault directly — without the REST API plugin dependency, without Obsidian running, and with zero setup beyond pointing it at your vault folder. You lose heading-relative patching and Obsidian-aware search, but gain simplicity and reliability. For many Obsidian users, Filesystem MCP is the pragmatic choice.
+    </p>
+
+    <h2>The Bottom Line</h2>
+    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
+      Notion MCP is the polished, official integration. Obsidian MCP is the community-built option with more friction but full local privacy. If you use Notion, the choice is obvious. If you use Obsidian, weigh whether the REST API features justify the setup complexity over using Filesystem MCP directly on your vault.
+    </p>
+
+    <p style="margin-top: 2rem;">
+      <a href="/mcp/best-for-productivity/">← Back to productivity MCP servers</a>
+    </p>
+  </div>
+</Base>

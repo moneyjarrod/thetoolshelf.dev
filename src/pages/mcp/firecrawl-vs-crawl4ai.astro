@@ -1,0 +1,90 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base
+  title="Firecrawl vs Crawl4AI MCP — Paid API vs Self-Hosted Scraping (2026)"
+  description="Side-by-side comparison of Firecrawl and Crawl4AI MCP servers. Official npx install vs Docker sidecar, API costs vs self-hosted, and which scraping server to choose."
+>
+  <div class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
+    <nav style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+      <a href="/">Home</a> → <a href="/mcp/">MCP Servers</a> → <a href="/mcp/best-for-web-scraping/">Web Scraping</a> → Firecrawl vs Crawl4AI
+    </nav>
+
+    <h1>Firecrawl vs Crawl4AI MCP</h1>
+    <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem;">
+      The paid official server vs the open-source self-hosted crawler. Different tradeoffs, clear winner for MCP integration.
+    </p>
+
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 2rem;">
+      <thead>
+        <tr style="border-bottom: 2px solid var(--border);">
+          <th style="text-align: left; padding: 0.75rem 0.5rem;"></th>
+          <th style="text-align: left; padding: 0.75rem 0.5rem;"><a href="/mcp/servers/firecrawl-mcp/">Firecrawl MCP</a></th>
+          <th style="text-align: left; padding: 0.75rem 0.5rem;"><a href="/mcp/servers/crawl4ai-mcp/">Crawl4AI MCP</a></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Verdict</td>
+          <td style="padding: 0.5rem;">✅ Recommended</td>
+          <td style="padding: 0.5rem;">❌ Skip</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Language</td>
+          <td style="padding: 0.5rem;">TypeScript</td>
+          <td style="padding: 0.5rem;">Python</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Install</td>
+          <td style="padding: 0.5rem;">npx (one command)</td>
+          <td style="padding: 0.5rem;">Docker (2GB+ image)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Cost</td>
+          <td style="padding: 0.5rem;">Free tier + paid plans</td>
+          <td style="padding: 0.5rem;">Free (self-hosted)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">MCP Status</td>
+          <td style="padding: 0.5rem;">Official, maintained server</td>
+          <td style="padding: 0.5rem;">Docker sidecar feature (not maintained separately)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Structured Extraction</td>
+          <td style="padding: 0.5rem;">Yes (JSON schema)</td>
+          <td style="padding: 0.5rem;">Yes (via crawler)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Stars</td>
+          <td style="padding: 0.5rem;">2,000</td>
+          <td style="padding: 0.5rem;">59,600</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Crawler Quality</td>
+          <td style="padding: 0.5rem;">Excellent (cloud-hosted)</td>
+          <td style="padding: 0.5rem;">Excellent (local)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>When to Use Firecrawl</h2>
+    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
+      Use Firecrawl when you want a scraping MCP server that just works. One npx command, an API key, and you're crawling. The official server is maintained, the structured extraction with JSON schemas is production-grade, and the remote server option eliminates even the local install. The free tier gives you enough to evaluate and build light workflows. This is the right choice for most developers.
+    </p>
+
+    <h2>When to Consider Crawl4AI</h2>
+    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
+      Consider Crawl4AI if you need high-volume scraping with zero API costs and you're comfortable running Docker. The crawler itself is best-in-class open source with 59.6K stars for good reason. But the MCP integration is a sidecar feature of the Docker image, not a maintained server — and that's why we rate it Skip for MCP use. If you need Crawl4AI's crawler, use it directly through its Python API. For MCP-native scraping, Firecrawl is the better path.
+    </p>
+
+    <h2>The Bottom Line</h2>
+    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
+      Crawl4AI is a better crawler. Firecrawl is a better MCP server. The MCP integration quality gap is significant — Firecrawl has a maintained server with structured extraction, remote hosting, and active development. Crawl4AI's MCP endpoint is an afterthought on a Docker image. For MCP workflows, recommend Firecrawl. For raw scraping power outside MCP, Crawl4AI is excellent.
+    </p>
+
+    <p style="margin-top: 2rem;">
+      <a href="/mcp/best-for-web-scraping/">← Back to web scraping MCP servers</a>
+    </p>
+  </div>
+</Base>

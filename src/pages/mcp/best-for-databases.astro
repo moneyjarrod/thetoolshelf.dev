@@ -1,0 +1,99 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import ListingCard from '../../components/ListingCard.astro';
+
+const servers = await getCollection('servers');
+const filtered = servers.filter(s => s.data.category.includes('database'));
+const recommended = filtered.filter(s => s.data.verdict === 'recommended');
+const conditional = filtered.filter(s => s.data.verdict === 'conditional');
+const skip = filtered.filter(s => s.data.verdict === 'skip');
+---
+
+<Base
+  title="Best MCP Servers for Databases (2026) — Tested & Reviewed"
+  description="Hand-tested database MCP servers for Postgres, MySQL, MongoDB, SQLite, and more. Honest reviews with client compatibility, setup difficulty, and paste-ready configs."
+>
+  <div class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
+    <nav style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+      <a href="/">Home</a> → <a href="/mcp/">MCP Servers</a> → Databases
+    </nav>
+
+    <h1>Best MCP Servers for Databases</h1>
+    <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 0.5rem;">
+      There are 124+ Postgres MCP servers alone on directory sites. We tested the ones that matter.
+    </p>
+    <p style="color: var(--text-muted); margin-bottom: 2rem;">
+      {filtered.length} database servers reviewed. {recommended.length} recommended, {conditional.length} conditional, {skip.length} skip.
+      Every server installed, tested in real clients, and reviewed with honest pros and cons.
+    </p>
+
+    {recommended.length > 0 && (
+      <div style="margin-bottom: 2rem;">
+        <h2>✅ Recommended</h2>
+        <div class="listing-grid" style="margin-top: 0.75rem;">
+          {recommended.map(server => (
+            <ListingCard
+              slug={server.id}
+              name={server.data.name}
+              description={server.data.description}
+              verdict={server.data.verdict}
+              language={server.data.language}
+              setup_difficulty={server.data.setup_difficulty}
+              category={server.data.category}
+            />
+          ))}
+        </div>
+      </div>
+    )}
+
+    {conditional.length > 0 && (
+      <div style="margin-bottom: 2rem;">
+        <h2>⚠️ Conditional</h2>
+        <div class="listing-grid" style="margin-top: 0.75rem;">
+          {conditional.map(server => (
+            <ListingCard
+              slug={server.id}
+              name={server.data.name}
+              description={server.data.description}
+              verdict={server.data.verdict}
+              language={server.data.language}
+              setup_difficulty={server.data.setup_difficulty}
+              category={server.data.category}
+            />
+          ))}
+        </div>
+      </div>
+    )}
+
+    {skip.length > 0 && (
+      <div style="margin-bottom: 2rem;">
+        <h2>❌ Skip</h2>
+        <div class="listing-grid" style="margin-top: 0.75rem;">
+          {skip.map(server => (
+            <ListingCard
+              slug={server.id}
+              name={server.data.name}
+              description={server.data.description}
+              verdict={server.data.verdict}
+              language={server.data.language}
+              setup_difficulty={server.data.setup_difficulty}
+              category={server.data.category}
+            />
+          ))}
+        </div>
+      </div>
+    )}
+
+    <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border);">
+      <h2>How We Test Database MCP Servers</h2>
+      <p style="color: var(--text-secondary); line-height: 1.6;">
+        Every database server on this page was installed from its published package, configured with a real database, and tested with actual queries. We verify schema exploration, query execution, and any advanced features like explain plans or index tuning. Compatibility is tested in Claude Desktop at minimum, with additional clients where possible. Setup difficulty reflects real install time — not what the README promises.
+      </p>
+    </div>
+
+    <p style="margin-top: 2rem;">
+      <a href="/mcp/">← Back to all MCP servers</a>
+    </p>
+  </div>
+</Base>

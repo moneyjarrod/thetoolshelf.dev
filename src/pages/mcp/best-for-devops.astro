@@ -1,0 +1,74 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import ListingCard from '../../components/ListingCard.astro';
+
+const servers = await getCollection('servers');
+const filtered = servers.filter(s => s.data.category.includes('devops') || s.data.category.includes('version-control'));
+const recommended = filtered.filter(s => s.data.verdict === 'recommended');
+const conditional = filtered.filter(s => s.data.verdict === 'conditional');
+const skip = filtered.filter(s => s.data.verdict === 'skip');
+---
+
+<Base
+  title="Best MCP Servers for DevOps (2026) — Tested & Reviewed"
+  description="Hand-tested DevOps MCP servers for GitHub, GitLab, Docker, Jira, Linear, Sentry, and more. Honest reviews with compatibility data and configs."
+>
+  <div class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
+    <nav style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+      <a href="/">Home</a> → <a href="/mcp/">MCP Servers</a> → DevOps
+    </nav>
+
+    <h1>Best MCP Servers for DevOps</h1>
+    <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 0.5rem;">
+      Version control, CI/CD, project management, and error tracking — connected to your AI assistant.
+    </p>
+    <p style="color: var(--text-muted); margin-bottom: 2rem;">
+      {filtered.length} DevOps servers reviewed. {recommended.length} recommended, {conditional.length} conditional, {skip.length} skip.
+    </p>
+
+    {recommended.length > 0 && (
+      <div style="margin-bottom: 2rem;">
+        <h2>✅ Recommended</h2>
+        <div class="listing-grid" style="margin-top: 0.75rem;">
+          {recommended.map(server => (
+            <ListingCard slug={server.id} name={server.data.name} description={server.data.description} verdict={server.data.verdict} language={server.data.language} setup_difficulty={server.data.setup_difficulty} category={server.data.category} />
+          ))}
+        </div>
+      </div>
+    )}
+
+    {conditional.length > 0 && (
+      <div style="margin-bottom: 2rem;">
+        <h2>⚠️ Conditional</h2>
+        <div class="listing-grid" style="margin-top: 0.75rem;">
+          {conditional.map(server => (
+            <ListingCard slug={server.id} name={server.data.name} description={server.data.description} verdict={server.data.verdict} language={server.data.language} setup_difficulty={server.data.setup_difficulty} category={server.data.category} />
+          ))}
+        </div>
+      </div>
+    )}
+
+    {skip.length > 0 && (
+      <div style="margin-bottom: 2rem;">
+        <h2>❌ Skip</h2>
+        <div class="listing-grid" style="margin-top: 0.75rem;">
+          {skip.map(server => (
+            <ListingCard slug={server.id} name={server.data.name} description={server.data.description} verdict={server.data.verdict} language={server.data.language} setup_difficulty={server.data.setup_difficulty} category={server.data.category} />
+          ))}
+        </div>
+      </div>
+    )}
+
+    <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border);">
+      <h2>How We Test DevOps MCP Servers</h2>
+      <p style="color: var(--text-secondary); line-height: 1.6;">
+        Every DevOps server was installed, authenticated with real accounts, and tested with actual repositories, projects, and workflows. We verify core operations — browsing repos, managing issues, interacting with CI pipelines — and note where setup complexity or permission models create friction.
+      </p>
+    </div>
+
+    <p style="margin-top: 2rem;">
+      <a href="/mcp/">← Back to all MCP servers</a>
+    </p>
+  </div>
+</Base>

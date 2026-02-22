@@ -1,0 +1,74 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import ListingCard from '../../components/ListingCard.astro';
+
+const servers = await getCollection('servers');
+const filtered = servers.filter(s => s.data.category.includes('coding') || s.data.category.includes('ui') || s.data.category.includes('monitoring') || s.data.category.includes('api') || s.data.category.includes('payment'));
+const recommended = filtered.filter(s => s.data.verdict === 'recommended');
+const conditional = filtered.filter(s => s.data.verdict === 'conditional');
+const skip = filtered.filter(s => s.data.verdict === 'skip');
+---
+
+<Base
+  title="Best MCP Servers for Coding (2026) — Tested & Reviewed"
+  description="Hand-tested coding MCP servers for UI components, observability, API testing, payments, and platform management. Honest reviews with configs."
+>
+  <div class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
+    <nav style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+      <a href="/">Home</a> → <a href="/mcp/">MCP Servers</a> → Coding
+    </nav>
+
+    <h1>Best MCP Servers for Coding</h1>
+    <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 0.5rem;">
+      UI components, observability dashboards, API testing, payment integration, and platform management — tools that accelerate development workflows.
+    </p>
+    <p style="color: var(--text-muted); margin-bottom: 2rem;">
+      {filtered.length} coding servers reviewed. {recommended.length} recommended, {conditional.length} conditional, {skip.length} skip.
+    </p>
+
+    {recommended.length > 0 && (
+      <div style="margin-bottom: 2rem;">
+        <h2>✅ Recommended</h2>
+        <div class="listing-grid" style="margin-top: 0.75rem;">
+          {recommended.map(server => (
+            <ListingCard slug={server.id} name={server.data.name} description={server.data.description} verdict={server.data.verdict} language={server.data.language} setup_difficulty={server.data.setup_difficulty} category={server.data.category} />
+          ))}
+        </div>
+      </div>
+    )}
+
+    {conditional.length > 0 && (
+      <div style="margin-bottom: 2rem;">
+        <h2>⚠️ Conditional</h2>
+        <div class="listing-grid" style="margin-top: 0.75rem;">
+          {conditional.map(server => (
+            <ListingCard slug={server.id} name={server.data.name} description={server.data.description} verdict={server.data.verdict} language={server.data.language} setup_difficulty={server.data.setup_difficulty} category={server.data.category} />
+          ))}
+        </div>
+      </div>
+    )}
+
+    {skip.length > 0 && (
+      <div style="margin-bottom: 2rem;">
+        <h2>❌ Skip</h2>
+        <div class="listing-grid" style="margin-top: 0.75rem;">
+          {skip.map(server => (
+            <ListingCard slug={server.id} name={server.data.name} description={server.data.description} verdict={server.data.verdict} language={server.data.language} setup_difficulty={server.data.setup_difficulty} category={server.data.category} />
+          ))}
+        </div>
+      </div>
+    )}
+
+    <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border);">
+      <h2>How We Test Coding MCP Servers</h2>
+      <p style="color: var(--text-secondary); line-height: 1.6;">
+        Every coding server was tested in real development workflows — installing components, querying dashboards, testing APIs, and managing deployments. We evaluate how well each server integrates into an existing development process and whether it genuinely saves time compared to using the tool's native interface directly.
+      </p>
+    </div>
+
+    <p style="margin-top: 2rem;">
+      <a href="/mcp/">← Back to all MCP servers</a>
+    </p>
+  </div>
+</Base>

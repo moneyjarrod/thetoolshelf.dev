@@ -30,6 +30,20 @@ const recommended = servers.filter(s => s.data.verdict === 'recommended');
       {servers.length} servers reviewed. {recommended.length} recommended.
     </p>
 
+    <div style="margin-bottom: 2rem;">
+      <h2>Browse by Category</h2>
+      <div class="listing-grid" style="margin-top: 0.75rem;">
+        <a href="/mcp/best-for-databases/" class="listing-card"><h3 class="card-name">🗄️ Databases</h3><p class="card-desc">Postgres, MySQL, MongoDB, SQLite, Redis, and more</p></a>
+        <a href="/mcp/best-for-devops/" class="listing-card"><h3 class="card-name">🔧 DevOps</h3><p class="card-desc">GitHub, GitLab, Docker, Jira, Linear, Sentry</p></a>
+        <a href="/mcp/best-for-web-scraping/" class="listing-card"><h3 class="card-name">🌐 Web Scraping</h3><p class="card-desc">Firecrawl, Playwright, Browserbase, Fetch</p></a>
+        <a href="/mcp/best-for-productivity/" class="listing-card"><h3 class="card-name">💬 Productivity</h3><p class="card-desc">Slack, Notion, Google Drive, Obsidian</p></a>
+        <a href="/mcp/best-for-cloud/" class="listing-card"><h3 class="card-name">☁️ Cloud</h3><p class="card-desc">AWS, Azure, Cloudflare, Terraform, Vercel</p></a>
+        <a href="/mcp/best-for-search/" class="listing-card"><h3 class="card-name">🔍 Search</h3><p class="card-desc">Brave, Exa, Tavily, Perplexity, Context7</p></a>
+        <a href="/mcp/best-for-local-tools/" class="listing-card"><h3 class="card-name">📁 Local Tools</h3><p class="card-desc">Filesystem, Desktop Commander, Memory</p></a>
+        <a href="/mcp/best-for-coding/" class="listing-card"><h3 class="card-name">🤖 Coding</h3><p class="card-desc">shadcn/ui, Grafana, Stripe, Postman</p></a>
+      </div>
+    </div>
+
     <h2><a href="/mcp/servers/">All Servers ({servers.length})</a></h2>
 
     {[...categories.entries()].map(([cat, catServers]) => (

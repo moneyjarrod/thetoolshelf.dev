@@ -1,0 +1,90 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base
+  title="GitHub MCP vs GitLab MCP — Which Version Control Server? (2026)"
+  description="Side-by-side comparison of GitHub MCP and GitLab MCP servers. Toolset management, self-hosted support, setup paths, and which fits your workflow."
+>
+  <div class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
+    <nav style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+      <a href="/">Home</a> → <a href="/mcp/">MCP Servers</a> → <a href="/mcp/best-for-devops/">DevOps</a> → GitHub vs GitLab
+    </nav>
+
+    <h1>GitHub MCP vs GitLab MCP</h1>
+    <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem;">
+      Both recommended. Your platform choice decides this one — but the MCP implementations are worth comparing.
+    </p>
+
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 2rem;">
+      <thead>
+        <tr style="border-bottom: 2px solid var(--border);">
+          <th style="text-align: left; padding: 0.75rem 0.5rem;"></th>
+          <th style="text-align: left; padding: 0.75rem 0.5rem;"><a href="/mcp/servers/github-mcp/">GitHub MCP</a></th>
+          <th style="text-align: left; padding: 0.75rem 0.5rem;"><a href="/mcp/servers/gitlab-mcp/">GitLab MCP</a></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Verdict</td>
+          <td style="padding: 0.5rem;">✅ Recommended</td>
+          <td style="padding: 0.5rem;">✅ Recommended</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Language</td>
+          <td style="padding: 0.5rem;">Go</td>
+          <td style="padding: 0.5rem;">Ruby (built-in) / TypeScript (reference)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Self-Hosted Support</td>
+          <td style="padding: 0.5rem;">github.com only</td>
+          <td style="padding: 0.5rem;">Yes — any GitLab instance</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Setup</td>
+          <td style="padding: 0.5rem;">Docker + PAT, or remote OAuth</td>
+          <td style="padding: 0.5rem;">Built-in (18.6+) or npx + PAT</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Tool Count</td>
+          <td style="padding: 0.5rem;">50+ across 10 toolsets</td>
+          <td style="padding: 0.5rem;">Built-in varies; community options 60+</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Tool Management</td>
+          <td style="padding: 0.5rem;">Toolsets (default 5 of 10) + dynamic discovery</td>
+          <td style="padding: 0.5rem;">Permission-based (follows GitLab roles)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Read-Only Mode</td>
+          <td style="padding: 0.5rem;">Yes (--read-only flag)</td>
+          <td style="padding: 0.5rem;">Via PAT scope or GitLab role</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Stars</td>
+          <td style="padding: 0.5rem;">20,000</td>
+          <td style="padding: 0.5rem;">N/A (built into GitLab)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>When to Use GitHub MCP</h2>
+    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
+      Use GitHub MCP if your repositories live on github.com. The toolset system is the most sophisticated tool management in the MCP ecosystem — you control exactly which capabilities Claude sees. The remote server at api.githubcopilot.com eliminates Docker entirely. Read-only mode and scope-aware token filtering make it safe to explore repos without risk.
+    </p>
+
+    <h2>When to Use GitLab MCP</h2>
+    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
+      Use GitLab MCP if your repositories are on GitLab — especially if you run a self-managed instance. The built-in MCP (18.6+) is the cleanest vendor integration we've reviewed: no server to install, OAuth handles auth, permissions follow your existing GitLab roles. For organizations on older GitLab versions, the reference server and community options bridge the gap.
+    </p>
+
+    <h2>The Bottom Line</h2>
+    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
+      This decision is made by your platform, not the MCP server quality. Both are well-built, both are officially supported, both are recommended. GitHub's toolset management is more sophisticated. GitLab's self-hosted support is a genuine differentiator for enterprise teams. If you use both platforms, install both servers — they coexist without conflict.
+    </p>
+
+    <p style="margin-top: 2rem;">
+      <a href="/mcp/best-for-devops/">← Back to DevOps MCP servers</a>
+    </p>
+  </div>
+</Base>

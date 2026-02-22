@@ -1,0 +1,90 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base
+  title="Postgres MCP Pro vs Supabase MCP — Which Database Server Should You Use? (2026)"
+  description="Side-by-side comparison of Postgres MCP Pro and Supabase MCP. Index tuning vs platform management, self-hosted vs cloud-only, and which one fits your workflow."
+>
+  <div class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
+    <nav style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+      <a href="/">Home</a> → <a href="/mcp/">MCP Servers</a> → <a href="/mcp/best-for-databases/">Databases</a> → Postgres Pro vs Supabase
+    </nav>
+
+    <h1>Postgres MCP Pro vs Supabase MCP</h1>
+    <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem;">
+      Two recommended Postgres MCP servers. Different tools for different jobs.
+    </p>
+
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 2rem;">
+      <thead>
+        <tr style="border-bottom: 2px solid var(--border);">
+          <th style="text-align: left; padding: 0.75rem 0.5rem;"></th>
+          <th style="text-align: left; padding: 0.75rem 0.5rem;"><a href="/mcp/servers/postgres-mcp-pro/">Postgres MCP Pro</a></th>
+          <th style="text-align: left; padding: 0.75rem 0.5rem;"><a href="/mcp/servers/supabase-mcp/">Supabase MCP</a></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Verdict</td>
+          <td style="padding: 0.5rem;">✅ Recommended</td>
+          <td style="padding: 0.5rem;">✅ Recommended</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Language</td>
+          <td style="padding: 0.5rem;">Python</td>
+          <td style="padding: 0.5rem;">TypeScript</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Works With</td>
+          <td style="padding: 0.5rem;">Any PostgreSQL database</td>
+          <td style="padding: 0.5rem;">Supabase Cloud only</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Setup</td>
+          <td style="padding: 0.5rem;">Advanced (Docker + DB credentials)</td>
+          <td style="padding: 0.5rem;">Moderate (OAuth or PAT)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Killer Feature</td>
+          <td style="padding: 0.5rem;">Index tuning with cost-benefit analysis</td>
+          <td style="padding: 0.5rem;">Platform management (edge functions, storage, branching)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Access Control</td>
+          <td style="padding: 0.5rem;">Restricted / Unrestricted modes</td>
+          <td style="padding: 0.5rem;">Read-only param + feature groups</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">Stars</td>
+          <td style="padding: 0.5rem;">2,000</td>
+          <td style="padding: 0.5rem;">1,500</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.5rem; font-weight: 600;">API Key Required</td>
+          <td style="padding: 0.5rem;">No (uses DB connection string)</td>
+          <td style="padding: 0.5rem;">OAuth or PAT</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>When to Use Postgres MCP Pro</h2>
+    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
+      Use Postgres MCP Pro when you need to work with any PostgreSQL database — self-hosted, AWS RDS, Cloud SQL, or any other provider. Its index tuning feature analyzes your actual query workload and recommends optimal indexes using cost-benefit analysis. The explain plan and health check tools make it the right choice for database performance work. Choose this when your focus is the database itself, not the platform around it.
+    </p>
+
+    <h2>When to Use Supabase MCP</h2>
+    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
+      Use Supabase MCP when you're building on Supabase and need to manage the full platform — not just the database, but edge functions, storage buckets, project configuration, and branch-based migrations. The OAuth setup is frictionless and the security defaults are excellent. Choose this when you're a Supabase customer and want Claude to manage your entire project, not just run queries.
+    </p>
+
+    <h2>The Bottom Line</h2>
+    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
+      These aren't competing servers — they solve different problems. Postgres MCP Pro is a database performance tool that works with any Postgres instance. Supabase MCP is a platform management tool that only works with Supabase. If you use Supabase, install both: Supabase MCP for platform operations, Postgres MCP Pro for deep query optimization. If you don't use Supabase, Postgres MCP Pro is your pick.
+    </p>
+
+    <p style="margin-top: 2rem;">
+      <a href="/mcp/best-for-databases/">← Back to database MCP servers</a>
+    </p>
+  </div>
+</Base>
