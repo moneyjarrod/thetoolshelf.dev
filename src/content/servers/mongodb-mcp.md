@@ -125,7 +125,7 @@ Atlas (with cloud management):
       "command": "npx",
       "args": ["-y", "@mongodb-js/mongodb-mcp-server"],
       "env": {
-        "MONGODB_URI": "mongodb+srv://user:pass@cluster.mongodb.net/mydb",
+        "MONGODB_URI": "your-atlas-connection-string",
         "MDB_MCP_ATLAS_CLIENT_ID": "your-atlas-client-id",
         "MDB_MCP_ATLAS_CLIENT_SECRET": "your-atlas-client-secret"
       }
